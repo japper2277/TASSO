@@ -373,18 +373,20 @@
 
     <script>
         // --- LOADER & ENTRANCE ANIMATION ---
-        window.addEventListener('load', () => {
+        function hideLoader() {
+            if (document.body.classList.contains('loaded')) return;
             const preloader = document.getElementById('preloader');
             const lingerTime = window.innerWidth <= 900 ? 800 : 1100;
             setTimeout(() => {
-                // 1. Hide Loader
                 preloader.style.opacity = '0';
                 preloader.style.visibility = 'hidden';
-
-                // 2. Trigger Grid Entrance
                 document.body.classList.add('loaded');
             }, lingerTime);
-        });
+        }
+
+        // Hide when resources load OR after 4 seconds max (whichever comes first)
+        window.addEventListener('load', hideLoader);
+        setTimeout(hideLoader, 4000);
 
         // --- MOBILE MENU ---
         const hamburger = document.querySelector('.hamburger');
