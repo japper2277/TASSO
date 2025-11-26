@@ -4,6 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Christopher Tasso | Photography</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Christopher Tasso - New York City based photographer specializing in street photography, portraiture, and fashion. Capturing raw urban moments and fleeting beauty.">
+    <meta name="keywords" content="Christopher Tasso, NYC photographer, street photography, fashion photography, portrait photography, New York photographer">
+    <meta name="author" content="Christopher Tasso">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Christopher Tasso | Photography">
+    <meta property="og:description" content="New York City based photographer specializing in street photography, portraiture, and fashion.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop">
+    <meta property="og:url" content="https://japper2277.github.io/TASSO/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Christopher Tasso | Photography">
+    <meta name="twitter:description" content="NYC based photographer - street, portrait, and fashion photography.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+
     <style>
         /* --- 1. GLOBAL VARIABLES & RESET --- */
         :root {
@@ -273,15 +295,15 @@
         <!-- HOME GRID -->
         <div class="grid-container" id="home-view">
             <div class="grid-block" onclick="switchView('gallery')">
-                <img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop" alt="Street">
+                <img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop" alt="Street" loading="lazy">
                 <div class="cat-label">Street</div>
             </div>
             <div class="grid-block" onclick="switchView('gallery')">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="Portraiture">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="Portraiture" loading="lazy">
                 <div class="cat-label">Portraiture</div>
             </div>
             <div class="grid-block" onclick="switchView('gallery')">
-                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1976&auto=format&fit=crop" alt="Fashion">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1976&auto=format&fit=crop" alt="Fashion" loading="lazy">
                 <div class="cat-label">Fashion</div>
             </div>
             <div class="grid-block" onclick="switchView('gallery')">
@@ -295,24 +317,24 @@
             <div class="arrow-zone left" onclick="scrollGallery('left')"><div class="arrow-icon">&larr;</div></div>
             <div class="arrow-zone right" onclick="scrollGallery('right')"><div class="arrow-icon">&rarr;</div></div>
             
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1976&auto=format&fit=crop"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502323777036-f29e3972d82f?q=80&w=2070&auto=format&fit=crop"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1976&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502323777036-f29e3972d82f?q=80&w=2070&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
         </div>
 
         <!-- CONTACT -->
         <div class="contact-split" id="contact-view">
             <div class="contact-left">
-                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop" alt="Contact Portrait">
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop" alt="Contact Portrait" loading="lazy">
             </div>
             <div class="contact-right">
                 <div class="bio-text">
                     Christopher Tasso is a photographer based in New York City, specializing in fashion and street photography. His work captures the raw texture and fleeting moments of urban life.
                 </div>
                 <div class="contact-hero">
-                    <a href="mailto:christopher@tasso.com" class="email-link">christopher@tasso.com</a>
-                    <div class="phone-text">+1 555 0199</div>
+                    <a href="mailto:tassochristopher@gmail.com" class="email-link">tassochristopher@gmail.com</a>
+                    <div class="phone-text">+1 (516) 761-5901</div>
                 </div>
                 <form class="minimal-form" action="https://formsubmit.co/tassochristopher@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="New message from portfolio">
@@ -330,10 +352,10 @@
     <footer>
         <div class="copyright">&copy; 2025 CHRISTOPHER TASSO</div>
         <div class="footer-icons">
-            <a href="mailto:christopher@tasso.com" class="icon-link">
+            <a href="mailto:tassochristopher@gmail.com" class="icon-link">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </a>
-            <a href="#" class="icon-link">
+            <a href="https://www.instagram.com/peekhere" target="_blank" class="icon-link">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
             </a>
         </div>
