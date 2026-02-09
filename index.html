@@ -234,6 +234,16 @@
             .contact-left { width: 100%; height: auto; }
             .contact-left img { width: 100%; height: auto; object-fit: contain; display: block; }
             .contact-right { flex-shrink: 0; width: 100%; height: auto; padding: 40px 20px 80px 20px; }
+
+            /* About - Mobile */
+            .about-split { flex-direction: column; height: auto; }
+            .about-left { width: 100%; height: auto; }
+            .about-left img { width: 100%; height: auto; object-fit: contain; display: block; }
+            .about-right { flex-shrink: 0; width: 100%; height: auto; padding: 40px 20px 80px 20px; }
+
+            /* Film - Mobile */
+            .film-wrap:not([style*="display: block"]) { display: none; }
+            .film-wrap[style*="display: block"] { white-space: normal; height: auto; line-height: 0; }
             
             .mobile-menu {
                 position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh;
@@ -254,6 +264,54 @@
             .close-menu { position: absolute; top: 20px; right: 20px; font-size: 40px; cursor: pointer; }
         }
 
+        /* --- DROPDOWN --- */
+        .nav-dropdown { position: relative; }
+        .dropdown-menu {
+            display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            background: var(--bg-color); padding: 6px 0; min-width: 120px;
+            flex-direction: column; gap: 0; z-index: 200;
+        }
+        .dropdown-menu::before {
+            content: ''; position: absolute; top: -10px; left: 0; right: 0; height: 10px;
+        }
+        .dropdown-menu li a {
+            display: block; padding: 4px 12px; font-size: 10px; letter-spacing: 0.5px;
+            font-weight: 700; text-transform: uppercase; color: var(--nav-inactive);
+            transition: color 0.2s; white-space: nowrap;
+        }
+        .dropdown-menu li a:hover { color: #000; }
+
+        /* --- ABOUT PAGE --- */
+        .about-split { display: none; width: 100%; height: 100%; }
+        .about-split.visible { display: flex; }
+        .about-left { width: 50%; height: 100%; overflow: hidden; background: #ddd; }
+        .about-left img { width: 100%; height: 100%; object-fit: cover; }
+        .about-right {
+            width: 50%; height: 100%; padding: 60px;
+            display: flex; flex-direction: column; justify-content: center;
+            overflow-y: auto;
+        }
+
+        /* --- FILM GALLERY --- */
+        .film-wrap {
+            display: none; height: 100%; width: 100%;
+            overflow-x: auto; overflow-y: hidden; white-space: nowrap;
+            scroll-snap-type: x mandatory; scrollbar-width: none;
+        }
+        .film-wrap::-webkit-scrollbar { display: none; }
+
+        /* --- MOBILE SUBMENU --- */
+        .mobile-submenu {
+            display: none; flex-direction: column; align-items: center;
+        }
+        .mobile-submenu.open { display: flex; }
+        .mobile-submenu a {
+            font-family: var(--font-art);
+            font-size: 5vw !important;
+            color: #666 !important;
+            margin: 5px 0 !important;
+        }
+
         .arrow-zone {
             position: absolute; top: 0; bottom: 0; width: 10%; z-index: 40; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
@@ -271,10 +329,18 @@
         <a href="#" class="logo" onclick="location.reload()">CHRISTOPHER TASSO</a>
         <nav class="desktop-nav">
             <ul>
-                <li><a href="#" onclick="switchView('gallery', this)">Street</a></li>
-                <li><a href="#" onclick="switchView('gallery', this)">Portraiture</a></li>
-                <li><a href="#" onclick="switchView('gallery', this)">Fashion</a></li>
-                <li><a href="#" onclick="switchView('gallery', this)">Video</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Photos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="switchView('gallery', this, 'musical-artists')">Musical Artists</a></li>
+                        <li><a href="#" onclick="switchView('gallery', this, 'wedding')">Wedding</a></li>
+                        <li><a href="#" onclick="switchView('gallery', this, 'street')">Street</a></li>
+                        <li><a href="#" onclick="switchView('gallery', this, 'studio')">Studio</a></li>
+                        <li><a href="#" onclick="switchView('gallery', this, 'portraits')">Portraits</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" onclick="switchView('film', this)">Film</a></li>
+                <li><a href="#" onclick="switchView('about', this)">About</a></li>
                 <li><a href="#" onclick="switchView('contact', this)">Contact</a></li>
             </ul>
         </nav>
@@ -283,10 +349,16 @@
 
     <div class="mobile-menu">
         <div class="close-menu">×</div>
-        <a href="#" onclick="closeMenu(); switchView('gallery')">Street</a>
-        <a href="#" onclick="closeMenu(); switchView('gallery')">Portraiture</a>
-        <a href="#" onclick="closeMenu(); switchView('gallery')">Fashion</a>
-        <a href="#" onclick="closeMenu(); switchView('gallery')">Video</a>
+        <a href="#" onclick="toggleMobilePhotos(event)">Photos</a>
+        <div class="mobile-submenu">
+            <a href="#" onclick="closeMenu(); switchView('gallery', null, 'musical-artists')">Musical Artists</a>
+            <a href="#" onclick="closeMenu(); switchView('gallery', null, 'wedding')">Wedding</a>
+            <a href="#" onclick="closeMenu(); switchView('gallery', null, 'street')">Street</a>
+            <a href="#" onclick="closeMenu(); switchView('gallery', null, 'studio')">Studio</a>
+            <a href="#" onclick="closeMenu(); switchView('gallery', null, 'portraits')">Portraits</a>
+        </div>
+        <a href="#" onclick="closeMenu(); switchView('film')">Film</a>
+        <a href="#" onclick="closeMenu(); switchView('about')">About</a>
         <a href="#" onclick="closeMenu(); switchView('contact')">Contact</a>
     </div>
 
@@ -294,21 +366,21 @@
         
         <!-- HOME GRID -->
         <div class="grid-container" id="home-view">
-            <div class="grid-block" onclick="switchView('gallery')">
-                <img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop" alt="Street" loading="lazy">
+            <div class="grid-block" onclick="switchView('gallery', null, 'musical-artists')">
+                <img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop" alt="Musical Artists" loading="lazy">
+                <div class="cat-label">Musical Artists</div>
+            </div>
+            <div class="grid-block" onclick="switchView('gallery', null, 'wedding')">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="Wedding" loading="lazy">
+                <div class="cat-label">Wedding</div>
+            </div>
+            <div class="grid-block" onclick="switchView('gallery', null, 'street')">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1976&auto=format&fit=crop" alt="Street" loading="lazy">
                 <div class="cat-label">Street</div>
             </div>
-            <div class="grid-block" onclick="switchView('gallery')">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="Portraiture" loading="lazy">
-                <div class="cat-label">Portraiture</div>
-            </div>
-            <div class="grid-block" onclick="switchView('gallery')">
-                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1976&auto=format&fit=crop" alt="Fashion" loading="lazy">
-                <div class="cat-label">Fashion</div>
-            </div>
-            <div class="grid-block" onclick="switchView('gallery')">
-                <video autoplay muted loop playsinline poster="https://via.placeholder.com/800x800/000000/FFFFFF?text=LOADING" src="https://videos.pexels.com/video-files/5309381/5309381-hd_1920_1080_25fps.mp4"></video>
-                <div class="cat-label">Video</div>
+            <div class="grid-block" onclick="switchView('gallery', null, 'studio')">
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop" alt="Studio" loading="lazy">
+                <div class="cat-label">Studio</div>
             </div>
         </div>
 
@@ -321,6 +393,27 @@
             <div class="gallery-item"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
             <div class="gallery-item"><img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
             <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502323777036-f29e3972d82f?q=80&w=2070&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
+        </div>
+
+        <!-- FILM -->
+        <div class="film-wrap" id="film-view">
+            <div class="arrow-zone left" onclick="scrollFilm('left')"><div class="arrow-icon">&larr;</div></div>
+            <div class="arrow-zone right" onclick="scrollFilm('right')"><div class="arrow-icon">&rarr;</div></div>
+
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop" alt="Film" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502323777036-f29e3972d82f?q=80&w=2070&auto=format&fit=crop" alt="Film" loading="lazy"></div>
+        </div>
+
+        <!-- ABOUT -->
+        <div class="about-split" id="about-view">
+            <div class="about-left">
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop" alt="About Portrait" loading="lazy">
+            </div>
+            <div class="about-right">
+                <div class="bio-text">
+                    Christopher Tasso is a photographer based in New York City, specializing in fashion and street photography. His work captures the raw texture and fleeting moments of urban life.
+                </div>
+            </div>
         </div>
 
         <!-- CONTACT -->
@@ -362,22 +455,45 @@
     </footer>
 
     <script>
+        // --- DROPDOWN HOVER ---
+        const navDropdown = document.querySelector('.nav-dropdown');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        dropdownMenu.style.display = 'none';
+
+        navDropdown.addEventListener('mouseenter', () => {
+            dropdownMenu.style.display = 'flex';
+        });
+        navDropdown.addEventListener('mouseleave', () => {
+            dropdownMenu.style.display = 'none';
+        });
+
         // --- MOBILE MENU ---
         const hamburger = document.querySelector('.hamburger');
         const mobileMenu = document.querySelector('.mobile-menu');
         const closeBtn = document.querySelector('.close-menu');
         hamburger.addEventListener('click', () => mobileMenu.classList.add('active'));
-        function closeMenu() { mobileMenu.classList.remove('active'); }
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            document.querySelector('.mobile-submenu').classList.remove('open');
+        }
         closeBtn.addEventListener('click', closeMenu);
+
+        // --- MOBILE PHOTOS SUBMENU ---
+        function toggleMobilePhotos(e) {
+            e.preventDefault();
+            document.querySelector('.mobile-submenu').classList.toggle('open');
+        }
 
         // --- VIEW SWITCHING ---
         const mainStage = document.getElementById('main-stage');
         const homeView = document.getElementById('home-view');
         const galleryView = document.getElementById('gallery-view');
+        const filmView = document.getElementById('film-view');
+        const aboutView = document.getElementById('about-view');
         const contactView = document.getElementById('contact-view');
         const navLinks = document.querySelectorAll('.desktop-nav a');
 
-        function switchView(viewName, element) {
+        function switchView(viewName, element, category) {
             navLinks.forEach(link => link.classList.remove('active-link'));
             if(element) element.classList.add('active-link');
 
@@ -386,11 +502,19 @@
             setTimeout(() => {
                 homeView.style.display = 'none';
                 galleryView.style.display = 'none';
+                filmView.style.display = 'none';
+                aboutView.style.display = 'none';
+                aboutView.classList.remove('visible');
                 contactView.style.display = 'none';
                 contactView.classList.remove('visible');
 
                 if(viewName === 'gallery') {
                     galleryView.style.display = 'block';
+                } else if(viewName === 'film') {
+                    filmView.style.display = 'block';
+                } else if(viewName === 'about') {
+                    aboutView.style.display = 'flex';
+                    setTimeout(() => aboutView.classList.add('visible'), 50);
                 } else if (viewName === 'contact') {
                     contactView.style.display = 'flex';
                     setTimeout(() => contactView.classList.add('visible'), 50);
@@ -414,9 +538,26 @@
         });
 
         function scrollGallery(direction) {
-            const scrollAmount = window.innerWidth * 0.6;a
+            const scrollAmount = window.innerWidth * 0.6;
             if(direction === 'right') galleryWrap.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             else galleryWrap.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+
+        // --- FILM SCROLL ---
+        const filmWrap = document.querySelector('.film-wrap');
+        filmWrap.addEventListener('wheel', (evt) => {
+            if(window.innerWidth > 900 && filmView.style.display === 'block') {
+                if (Math.abs(evt.deltaY) > Math.abs(evt.deltaX)) {
+                    evt.preventDefault();
+                    filmWrap.scrollLeft += evt.deltaY * 1.5;
+                }
+            }
+        });
+
+        function scrollFilm(direction) {
+            const scrollAmount = window.innerWidth * 0.6;
+            if(direction === 'right') filmWrap.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            else filmWrap.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         }
     </script>
 </body>
