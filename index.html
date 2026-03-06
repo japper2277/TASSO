@@ -14,14 +14,14 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Christopher Tasso | Photography">
     <meta property="og:description" content="New York City based photographer specializing in street photography, portraiture, and fashion.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop">
+    <meta property="og:image" content="images/portraits/portrait-coverphoto.jpg">
     <meta property="og:url" content="https://japper2277.github.io/TASSO/">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Christopher Tasso | Photography">
     <meta name="twitter:description" content="NYC based photographer - street, portrait, and fashion photography.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop">
+    <meta name="twitter:image" content="images/portraits/portrait-coverphoto.jpg">
 
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
@@ -131,14 +131,14 @@
             display: inline-block; height: 100%; width: auto; 
             margin-right: -4px; position: relative; scroll-snap-align: center; 
         }
-        .gallery-item img { height: 100%; width: auto; display: block; }
+        .gallery-item img { max-height: 100%; width: auto; display: block; object-fit: contain; }
 
         /* --- 7. CONTACT PAGE (Fixed Form) --- */
         .contact-split { display: none; width: 100%; height: 100%; }
         .contact-split.visible { display: flex; }
 
         .contact-left { width: 50%; height: 100%; overflow: hidden; background: #ddd; }
-        .contact-left img { width: 100%; height: 100%; object-fit: cover; }
+        .contact-left img { width: 100%; height: 100%; object-fit: contain; }
 
         .contact-right {
             width: 50%; height: 100%; padding: 60px;
@@ -241,9 +241,6 @@
             .about-left img { width: 100%; height: auto; object-fit: contain; display: block; }
             .about-right { flex-shrink: 0; width: 100%; height: auto; padding: 40px 20px 80px 20px; }
 
-            /* Film - Mobile */
-            .film-wrap:not([style*="display: block"]) { display: none; }
-            .film-wrap[style*="display: block"] { white-space: normal; height: auto; line-height: 0; }
             
             .mobile-menu {
                 position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh;
@@ -285,20 +282,13 @@
         .about-split { display: none; width: 100%; height: 100%; }
         .about-split.visible { display: flex; }
         .about-left { width: 50%; height: 100%; overflow: hidden; background: #ddd; }
-        .about-left img { width: 100%; height: 100%; object-fit: cover; }
+        .about-left img { width: 100%; height: 100%; object-fit: contain; }
         .about-right {
             width: 50%; height: 100%; padding: 60px;
             display: flex; flex-direction: column; justify-content: center;
             overflow-y: auto;
         }
 
-        /* --- FILM GALLERY --- */
-        .film-wrap {
-            display: none; height: 100%; width: 100%;
-            overflow-x: auto; overflow-y: hidden; white-space: nowrap;
-            scroll-snap-type: x mandatory; scrollbar-width: none;
-        }
-        .film-wrap::-webkit-scrollbar { display: none; }
 
         /* --- MOBILE SUBMENU --- */
         .mobile-submenu {
@@ -339,7 +329,7 @@
                         <li><a href="#" onclick="switchView('gallery', this, 'portraits')">Portraits</a></li>
                     </ul>
                 </li>
-                <li><a href="#" onclick="switchView('film', this)">Film</a></li>
+
                 <li><a href="#" onclick="switchView('about', this)">About</a></li>
                 <li><a href="#" onclick="switchView('contact', this)">Contact</a></li>
             </ul>
@@ -357,7 +347,7 @@
             <a href="#" onclick="closeMenu(); switchView('gallery', null, 'studio')">Studio</a>
             <a href="#" onclick="closeMenu(); switchView('gallery', null, 'portraits')">Portraits</a>
         </div>
-        <a href="#" onclick="closeMenu(); switchView('film')">Film</a>
+
         <a href="#" onclick="closeMenu(); switchView('about')">About</a>
         <a href="#" onclick="closeMenu(); switchView('contact')">Contact</a>
     </div>
@@ -367,19 +357,19 @@
         <!-- HOME GRID -->
         <div class="grid-container" id="home-view">
             <div class="grid-block" onclick="switchView('gallery', null, 'musical-artists')">
-                <img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop" alt="Musical Artists" loading="lazy">
+                <img src="images/hats/cover-music.jpg" alt="Musical Artists" loading="lazy">
                 <div class="cat-label">Musical Artists</div>
             </div>
             <div class="grid-block" onclick="switchView('gallery', null, 'wedding')">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="Wedding" loading="lazy">
+                <img src="images/wedding/cover-wedding.jpg" alt="Wedding" loading="lazy">
                 <div class="cat-label">Wedding</div>
             </div>
             <div class="grid-block" onclick="switchView('gallery', null, 'street')">
-                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1976&auto=format&fit=crop" alt="Street" loading="lazy">
+                <img src="images/street/cover-street.jpg" alt="Street" loading="lazy">
                 <div class="cat-label">Street</div>
             </div>
             <div class="grid-block" onclick="switchView('gallery', null, 'studio')">
-                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop" alt="Studio" loading="lazy">
+                <img src="images/fashion/cover-studio.jpg" alt="Studio" loading="lazy">
                 <div class="cat-label">Studio</div>
             </div>
         </div>
@@ -388,26 +378,13 @@
         <div class="gallery-wrap" id="gallery-view">
             <div class="arrow-zone left" onclick="scrollGallery('left')"><div class="arrow-icon">&larr;</div></div>
             <div class="arrow-zone right" onclick="scrollGallery('right')"><div class="arrow-icon">&rarr;</div></div>
-            
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1976&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502323777036-f29e3972d82f?q=80&w=2070&auto=format&fit=crop" alt="Gallery image" loading="lazy"></div>
         </div>
 
-        <!-- FILM -->
-        <div class="film-wrap" id="film-view">
-            <div class="arrow-zone left" onclick="scrollFilm('left')"><div class="arrow-icon">&larr;</div></div>
-            <div class="arrow-zone right" onclick="scrollFilm('right')"><div class="arrow-icon">&rarr;</div></div>
-
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1485550409059-9afb054cada4?q=80&w=1965&auto=format&fit=crop" alt="Film" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502323777036-f29e3972d82f?q=80&w=2070&auto=format&fit=crop" alt="Film" loading="lazy"></div>
-        </div>
 
         <!-- ABOUT -->
         <div class="about-split" id="about-view">
             <div class="about-left">
-                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop" alt="About Portrait" loading="lazy">
+                <img src="images/portraits/portrait-coverphoto.jpg" alt="About Portrait" loading="lazy">
             </div>
             <div class="about-right">
                 <div class="bio-text">
@@ -419,7 +396,7 @@
         <!-- CONTACT -->
         <div class="contact-split" id="contact-view">
             <div class="contact-left">
-                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop" alt="Contact Portrait" loading="lazy">
+                <img src="images/portraits/portrait-coverphoto.jpg" alt="Contact Portrait" loading="lazy">
             </div>
             <div class="contact-right">
                 <div class="bio-text">
@@ -484,11 +461,56 @@
             document.querySelector('.mobile-submenu').classList.toggle('open');
         }
 
+        // --- GALLERY DATA ---
+        const galleryImages = {
+            'musical-artists': [
+                'images/hats/dsc_1249-2.jpg','images/hats/dsc_1330.jpg','images/hats/dscf4432.jpg',
+                'images/hats/dscf4460-2.jpg','images/hats/dscf4480.jpg','images/hats/dscf4876-2.jpg',
+                'images/hats/dscf4877-2.jpg','images/hats/dscf4879-2.jpg','images/hats/dscf4881-2.jpg',
+                'images/hats/dscf4889.jpg','images/hats/dscf4890.jpg'
+            ],
+            'wedding': [
+                'images/wedding/dscf5608.jpg','images/wedding/dscf5741.jpg','images/wedding/dscf5746.jpg'
+            ],
+            'street': [
+                'images/street/000019000021.jpg','images/street/32650010-(1).jpg','images/street/dscf2330.jpg',
+                'images/street/dscf2524.jpg','images/street/dscf3093.jpg','images/street/img_1247.jpg',
+                'images/street/r0030488.jpg','images/street/r0033970.jpg','images/street/r0035916-2.jpg',
+                'images/street/r0038177.jpg'
+            ],
+            'studio': [
+                'images/fashion/_c5a3445.jpg','images/fashion/_c5a3638-2.jpg','images/fashion/_c5a3658-2.jpg',
+                'images/fashion/_c5a3806-2.jpg','images/fashion/_c5a3811.jpg','images/fashion/_c5a3814-2.jpg',
+                'images/fashion/_c5a3826-2.jpg','images/fashion/_c5a4140.jpg','images/fashion/_c5a4215.jpg',
+                'images/fashion/_c5a4230.jpg'
+            ],
+            'portraits': [
+                'images/portraits/dscf0289-2.jpg','images/portraits/dscf0308-2.jpg','images/portraits/dscf0467.jpg',
+                'images/portraits/dscf2580.jpg','images/portraits/dscf2605.jpg','images/portraits/dscf2619-2.jpg',
+                'images/portraits/dscf2623.jpg','images/portraits/dscf3148.jpg','images/portraits/dscf3153.jpg',
+                'images/portraits/dscf9609.jpg','images/portraits/dscf9722.jpg','images/portraits/dscf9783.jpg',
+                'images/portraits/dscf9820.jpg','images/portraits/dscf9892.jpg'
+            ]
+        };
+
+        function loadGallery(category) {
+            const wrap = document.getElementById('gallery-view');
+            // Keep arrow zones, remove old gallery items
+            wrap.querySelectorAll('.gallery-item').forEach(el => el.remove());
+            const images = galleryImages[category] || [];
+            images.forEach(src => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.innerHTML = '<img src="' + src + '" alt="Gallery image" loading="lazy">';
+                wrap.appendChild(div);
+            });
+            wrap.scrollLeft = 0;
+        }
+
         // --- VIEW SWITCHING ---
         const mainStage = document.getElementById('main-stage');
         const homeView = document.getElementById('home-view');
         const galleryView = document.getElementById('gallery-view');
-        const filmView = document.getElementById('film-view');
         const aboutView = document.getElementById('about-view');
         const contactView = document.getElementById('contact-view');
         const navLinks = document.querySelectorAll('.desktop-nav a');
@@ -502,16 +524,14 @@
             setTimeout(() => {
                 homeView.style.display = 'none';
                 galleryView.style.display = 'none';
-                filmView.style.display = 'none';
                 aboutView.style.display = 'none';
                 aboutView.classList.remove('visible');
                 contactView.style.display = 'none';
                 contactView.classList.remove('visible');
 
                 if(viewName === 'gallery') {
+                    loadGallery(category);
                     galleryView.style.display = 'block';
-                } else if(viewName === 'film') {
-                    filmView.style.display = 'block';
                 } else if(viewName === 'about') {
                     aboutView.style.display = 'flex';
                     setTimeout(() => aboutView.classList.add('visible'), 50);
@@ -543,22 +563,6 @@
             else galleryWrap.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         }
 
-        // --- FILM SCROLL ---
-        const filmWrap = document.querySelector('.film-wrap');
-        filmWrap.addEventListener('wheel', (evt) => {
-            if(window.innerWidth > 900 && filmView.style.display === 'block') {
-                if (Math.abs(evt.deltaY) > Math.abs(evt.deltaX)) {
-                    evt.preventDefault();
-                    filmWrap.scrollLeft += evt.deltaY * 1.5;
-                }
-            }
-        });
-
-        function scrollFilm(direction) {
-            const scrollAmount = window.innerWidth * 0.6;
-            if(direction === 'right') filmWrap.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            else filmWrap.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        }
     </script>
 </body>
 </html>
