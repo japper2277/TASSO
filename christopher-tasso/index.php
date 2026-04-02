@@ -135,7 +135,7 @@
             </div>
             <div class="contact-right">
                 <div class="bio-text">
-                    Christopher Tasso is a photographer based in New York City, specializing in fashion and street photography. His work captures the raw texture and fleeting moments of urban life.
+                    A photographer based in New York City, specializing in fashion and street photography.
                 </div>
                 <div class="contact-hero">
                     <a href="mailto:tassochristopher@gmail.com" class="email-link">tassochristopher@gmail.com</a>
