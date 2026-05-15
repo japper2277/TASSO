@@ -404,19 +404,19 @@
         
         <!-- HOME GRID -->
         <div class="grid-container" id="home-view">
-            <div class="grid-block" onclick="switchView('gallery', null, 'studio')">
+            <div class="grid-block" data-category="studio" onclick="switchView('gallery', null, 'studio')">
                 <img src="images/fashion/cover-studio.jpg" alt="Studio" loading="lazy">
                 <div class="cat-label">Studio</div>
             </div>
-            <div class="grid-block" onclick="switchView('gallery', null, 'street')">
+            <div class="grid-block" data-category="street" onclick="switchView('gallery', null, 'street')">
                 <img src="images/street/cover-street.jpg" alt="Street" loading="lazy">
                 <div class="cat-label">Street</div>
             </div>
-            <div class="grid-block" onclick="switchView('gallery', null, 'musical-artists')">
+            <div class="grid-block" data-category="musical-artists" onclick="switchView('gallery', null, 'musical-artists')">
                 <img src="images/hats/cover-music.jpg" alt="Musical Artists" loading="lazy">
                 <div class="cat-label">Musical Artists</div>
             </div>
-            <div class="grid-block" onclick="switchView('gallery', null, 'wedding')">
+            <div class="grid-block" data-category="wedding" onclick="switchView('gallery', null, 'wedding')">
                 <img src="images/wedding/cover-wedding.jpg" alt="Wedding" loading="lazy">
                 <div class="cat-label">Wedding</div>
             </div>
@@ -604,8 +604,41 @@
             else galleryWrap.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         }
 
-        // --- PRELOAD ALL GALLERY IMAGES ---
-        window.addEventListener('load', function() {
+        // --- NOTION MANIFEST OVERRIDE ---
+        // If images/manifest.json exists (written by the Notion sync GitHub Action),
+        // use it to override gallery lists, home-grid covers, and the About photo.
+        // If the fetch fails, the hardcoded values above remain in effect.
+        async function applyManifest() {
+            try {
+                const res = await fetch('images/manifest.json?_=' + Date.now(), { cache: 'no-store' });
+                if (!res.ok) return;
+                const m = await res.json();
+
+                if (m.galleries && typeof m.galleries === 'object') {
+                    for (const [cat, list] of Object.entries(m.galleries)) {
+                        if (Array.isArray(list) && list.length) galleryImages[cat] = list;
+                    }
+                }
+                if (m.covers && typeof m.covers === 'object') {
+                    document.querySelectorAll('#home-view .grid-block[data-category]').forEach(block => {
+                        const src = m.covers[block.dataset.category];
+                        if (!src) return;
+                        const img = block.querySelector('img');
+                        if (img) img.src = src;
+                    });
+                }
+                if (m.about) {
+                    const aboutImg = document.querySelector('#about-view .about-left img');
+                    if (aboutImg) aboutImg.src = m.about;
+                }
+            } catch (e) {
+                console.warn('Notion manifest load failed; using built-in defaults.', e);
+            }
+        }
+
+        // --- PRELOAD ALL GALLERY IMAGES (after manifest) ---
+        window.addEventListener('load', async function() {
+            await applyManifest();
             Object.values(galleryImages).flat().forEach(function(src) {
                 new Image().src = src;
             });

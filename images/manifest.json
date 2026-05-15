@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-05-15T16:09:54.646Z",
+  "covers": {
+    "musical-artists": "images/hats/notion-3610a6de99678163b8fdd719.jpg",
+    "wedding": "images/wedding/notion-3610a6de99678100bf62c6c0.jpg",
+    "street": "images/street/notion-3610a6de996781a5a5d0ee0f.jpg",
+    "studio": "images/fashion/notion-3610a6de9967814e837bfa7a.jpg",
+    "portraits": "images/portraits/notion-3610a6de99678135af6ec208.jpg"
+  },
+  "galleries": {
+    "musical-artists": [
+      "images/hats/notion-3610a6de99678163b8fdd719.jpg",
+      "images/hats/notion-3610a6de99678125a644df09.jpg",
+      "images/hats/notion-3610a6de9967819ea376e450.jpg",
+      "images/hats/notion-3610a6de99678165838dc160.jpg",
+      "images/hats/notion-3610a6de99678106b335eeb2.jpg",
+      "images/hats/notion-3610a6de9967812abfedfe2e.jpg",
+      "images/hats/notion-3610a6de996781d4b886f14b.jpg",
+      "images/hats/notion-3610a6de996781ffa9bbe139.jpg",
+      "images/hats/notion-3610a6de996781a7b6b5d45b.jpg",
+      "images/hats/notion-3610a6de99678134be6ce703.jpg",
+      "images/hats/notion-3610a6de99678185b446d4c0.jpg",
+      "images/hats/notion-3610a6de996781a98427eed8.jpg"
+    ],
+    "wedding": [
+      "images/wedding/notion-3610a6de99678100bf62c6c0.jpg",
+      "images/wedding/notion-3610a6de9967817caf83c85a.jpg",
+      "images/wedding/notion-3610a6de9967816f897cd8e7.jpg",
+      "images/wedding/notion-3610a6de9967813fafe4f8e5.jpg"
+    ],
+    "street": [
+      "images/street/notion-3610a6de996781a5a5d0ee0f.jpg",
+      "images/street/notion-3610a6de9967811681fbe4e5.jpg",
+      "images/street/notion-3610a6de9967815d90d4ec97.jpg",
+      "images/street/notion-3610a6de9967818880e4e40e.jpg",
+      "images/street/notion-3610a6de9967810999b6cf8c.jpg",
+      "images/street/notion-3610a6de99678192af8dfeb2.jpg",
+      "images/street/notion-3610a6de996781968d9bf9c2.jpg",
+      "images/street/notion-3610a6de996781c3bd93d0b8.jpg",
+      "images/street/notion-3610a6de9967812dbef4f77d.jpg",
+      "images/street/notion-3610a6de9967813ba83ecdc6.jpg",
+      "images/street/notion-3610a6de996781ce9fc5c4a1.jpg"
+    ],
+    "studio": [
+      "images/fashion/notion-3610a6de9967814e837bfa7a.jpg",
+      "images/fashion/notion-3610a6de99678166b72ff838.jpg",
+      "images/fashion/notion-3610a6de9967815cb2d3e266.jpg",
+      "images/fashion/notion-3610a6de996781faa9d5dab1.jpg",
+      "images/fashion/notion-3610a6de9967817daae3c8c7.jpg",
+      "images/fashion/notion-3610a6de996781909a81e80e.jpg",
+      "images/fashion/notion-3610a6de99678139b87cdb2b.jpg",
+      "images/fashion/notion-3610a6de9967814f8617c0bb.jpg",
+      "images/fashion/notion-3610a6de996781adbd08dd39.jpg",
+      "images/fashion/notion-3610a6de99678117a3a1dbc0.jpg",
+      "images/fashion/notion-3610a6de996781c9a4ddd666.jpg"
+    ],
+    "portraits": [
+      "images/portraits/notion-3610a6de99678135af6ec208.jpg",
+      "images/portraits/notion-3610a6de9967812baadeefc2.jpg",
+      "images/portraits/notion-3610a6de99678136a690e54f.jpg",
+      "images/portraits/notion-3610a6de996781578b31c785.jpg",
+      "images/portraits/notion-3610a6de9967813ab6d7de96.jpg",
+      "images/portraits/notion-3610a6de9967810a93b0d031.jpg",
+      "images/portraits/notion-3610a6de996781c695beeb42.jpg",
+      "images/portraits/notion-3610a6de99678150804df6a9.jpg",
+      "images/portraits/notion-3610a6de996781b5ad95de5a.jpg",
+      "images/portraits/notion-3610a6de996781e38c84c1d0.jpg",
+      "images/portraits/notion-3610a6de9967812c9b5dcaf1.jpg",
+      "images/portraits/notion-3610a6de9967813dbf53df67.jpg",
+      "images/portraits/notion-3610a6de996781c4b0e3f256.jpg",
+      "images/portraits/notion-3610a6de9967810489ddfc18.jpg",
+      "images/portraits/notion-3610a6de996781a1aad1ca88.jpg"
+    ]
+  },
+  "about": "images/about/notion-3610a6de9967818e8eb7f497.jpg"
+}

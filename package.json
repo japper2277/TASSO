@@ -1,0 +1,13 @@
+{
+  "name": "tasso-notion-sync",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node --env-file=.env scripts/sync-from-notion.mjs",
+    "serve": "python3 -m http.server 4321",
+    "preview": "npm run sync && (open http://localhost:4321 || true) && python3 -m http.server 4321"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15"
+  }
+}

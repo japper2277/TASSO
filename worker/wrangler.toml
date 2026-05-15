@@ -1,0 +1,7 @@
+name = "tasso-publish"
+main = "publish.js"
+compatibility_date = "2026-05-15"
+
+# Secrets are NOT defined here — set them with:
+#   wrangler secret put GITHUB_PAT
+#   wrangler secret put SHARED_SECRET

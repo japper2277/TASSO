@@ -1,2 +1,13 @@
 # Local Netlify folder
 .netlify
+
+# Node
+node_modules
+npm-debug.log
+
+# Local environment (secrets — never commit)
+.env
+.env.local
+
+# macOS junk
+.DS_Store
