@@ -38,7 +38,17 @@ jobs:
           git add -A images/ scripts/.sync-state.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
-          else
-            git commit -m "chore: sync photos from Notion [skip ci]"
-            git push
+            exit 0
           fi
+          git commit -m "chore: sync photos from Notion [skip ci]"
+          # Retry push with rebase to handle the case where another
+          # queued sync committed while this one was running.
+          for i in 1 2 3; do
+            if git push; then
+              exit 0
+            fi
+            echo "push attempt $i failed; rebasing onto remote and retrying"
+            git pull --rebase origin main
+          done
+          echo "push failed after 3 attempts"
+          exit 1
