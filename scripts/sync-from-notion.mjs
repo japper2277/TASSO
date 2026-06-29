@@ -58,13 +58,25 @@ async function withRetry(label, fn, attempts = 5) {
   throw lastErr;
 }
 
-async function fetchAllPages() {
+// Notion API 2025-09-03 introduced "data sources": a database query now
+// targets a data_source_id, not the database_id. Resolve it from the
+// database (single-source DB -> the first/only data source).
+async function resolveDataSourceId() {
+  const db = await withRetry("notion db retrieve", () =>
+    notion.databases.retrieve({ database_id: DATABASE_ID })
+  );
+  const ds = db.data_sources?.[0];
+  if (!ds) throw new Error(`Database ${DATABASE_ID} has no data sources`);
+  return ds.id;
+}
+
+async function fetchAllPages(dataSourceId) {
   const pages = [];
   let cursor;
   do {
     const r = await withRetry("notion query", () =>
-      notion.databases.query({
-        database_id: DATABASE_ID,
+      notion.dataSources.query({
+        data_source_id: dataSourceId,
         start_cursor: cursor,
         page_size: 100,
       })
@@ -105,7 +117,8 @@ async function main() {
   const state = await loadJson(STATE_PATH, { pages: {} });
   const newState = { pages: {} };
 
-  const pages = await fetchAllPages();
+  const dataSourceId = await resolveDataSourceId();
+  const pages = await fetchAllPages(dataSourceId);
   console.log(`Fetched ${pages.length} pages from Notion`);
 
   const records = [];
