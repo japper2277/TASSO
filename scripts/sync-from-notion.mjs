@@ -38,15 +38,37 @@ function safeExt(url, fallback = "jpg") {
   return fallback;
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Retry transient network failures (the Notion API gzip stream sometimes
+// closes early -> ERR_STREAM_PREMATURE_CLOSE; the SDK does not retry those).
+async function withRetry(label, fn, attempts = 5) {
+  let lastErr;
+  for (let i = 1; i <= attempts; i++) {
+    try {
+      return await fn();
+    } catch (e) {
+      lastErr = e;
+      if (i === attempts) break;
+      const delay = Math.min(1000 * 2 ** (i - 1), 8000);
+      console.warn(`  ${label} attempt ${i} failed: ${e.message} — retrying in ${delay}ms`);
+      await sleep(delay);
+    }
+  }
+  throw lastErr;
+}
+
 async function fetchAllPages() {
   const pages = [];
   let cursor;
   do {
-    const r = await notion.databases.query({
-      database_id: DATABASE_ID,
-      start_cursor: cursor,
-      page_size: 100,
-    });
+    const r = await withRetry("notion query", () =>
+      notion.databases.query({
+        database_id: DATABASE_ID,
+        start_cursor: cursor,
+        page_size: 100,
+      })
+    );
     pages.push(...r.results);
     cursor = r.has_more ? r.next_cursor : undefined;
   } while (cursor);
@@ -65,9 +87,11 @@ const getCheckbox = (p, n) => getProp(p, n, "checkbox")?.checkbox ?? false;
 const getFiles    = (p, n) => getProp(p, n, "files")?.files ?? [];
 
 async function downloadFile(url, dest) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`fetch ${res.status} ${url}`);
-  const buf = Buffer.from(await res.arrayBuffer());
+  const buf = await withRetry("download", async () => {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`fetch ${res.status} ${url}`);
+    return Buffer.from(await res.arrayBuffer());
+  });
   await fs.mkdir(path.dirname(dest), { recursive: true });
   await fs.writeFile(dest, buf);
 }
